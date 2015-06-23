@@ -1,0 +1,19 @@
+/**
+ * Version    : 1.0.0
+ * Author     : Takashi Kitajima
+ * Author URI : http://2inc.org
+ * Create     : June 15, 2015
+ * Modified   :
+ * License    : GPLv2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
+
+.settings_page_class-habakiri-share-buttons-settings .form-table ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.settings_page_class-habakiri-share-buttons-settings .form-table ul li {
+	margin: 0 0 5px;
+	padding: 0;
+}
