@@ -40,6 +40,7 @@ class Habakiri_Share_Buttons {
 	 * アンインストール時の処理
 	 */
 	public static function uninstall() {
+		delete_option( Habakiri_Share_Buttons_Config::NAME );
 	}
 
 	/**
