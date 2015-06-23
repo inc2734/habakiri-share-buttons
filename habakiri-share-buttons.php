@@ -156,4 +156,8 @@ class Habakiri_Share_Buttons {
 		) );
 	}
 }
-$Habakiri_Share_Buttons = new Habakiri_Share_Buttons();
+
+$theme = wp_get_theme();
+if ( $theme->template === 'habakiri' ) {
+	$Habakiri_Share_Buttons = new Habakiri_Share_Buttons();
+}
