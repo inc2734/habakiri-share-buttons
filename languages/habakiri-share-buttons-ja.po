@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Habakiri Share Buttons 1.0.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/habakiri-share-"
+"buttons\n"
+"POT-Creation-Date: 2015-06-23 07:11:01+00:00\n"
+"PO-Revision-Date: 2015-06-23 16:11+0900\n"
+"Last-Translator: Takashi Kitajima <inc@2inc.org>\n"
+"Language-Team: Takashi Kitajima <inc@2inc.org>\n"
+"Language: ja_JP\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-KeywordsList: __;_e;_x\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: classes/class.habakiri-share-buttons-settings.php:27
+#: classes/class.habakiri-share-buttons-settings.php:28
+#: classes/class.habakiri-share-buttons-settings.php:120
+msgid "Share Buttons Settings"
+msgstr "シェアボタン設定"
+
+#: classes/class.habakiri-share-buttons-settings.php:126
+msgid "Share Buttons Type"
+msgstr "シェアボタンの種類"
+
+#: classes/class.habakiri-share-buttons-settings.php:143
+msgid "Position to Display"
+msgstr "表示する場所"
+
+#: classes/class.habakiri-share-buttons-settings.php:160
+msgid "Post Types to Display"
+msgstr "表示する投稿タイプ"
+
+#: classes/class.habakiri-share-buttons-settings.php:178
+msgid "Save Changes"
+msgstr "変更を保存"
+
+#: classes/class.option.php:52
+msgid "Balloon"
+msgstr "バルーン"
+
+#: classes/class.option.php:53
+msgid "Horizontal"
+msgstr "水平"
+
+#: classes/class.option.php:59
+msgid "Before Content"
+msgstr "本文の前"
+
+#: classes/class.option.php:60
+msgid "After Content"
+msgstr "本文の後"
+
+#: habakiri-share-buttons.php:136
+msgid "Like!"
+msgstr "いいね！"
+
+#: habakiri-share-buttons.php:137
+msgid "Tweet"
+msgstr "ツイート"
+
+#: habakiri-share-buttons.php:138
+msgid "Bookmark"
+msgstr "Bookmark"
+
+#. Plugin Name of the plugin/theme
+msgid "Habakiri Share Buttons"
+msgstr "Habakiri Share Buttons"
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/inc2734/habakiri-share-buttons"
+msgstr "https://github.com/inc2734/habakiri-share-buttons"
+
+#. Description of the plugin/theme
+msgid "Add social share buttons on Habakiri theme."
+msgstr "Habakiri テーマにソーシャルシェアボタンを追加します。"
+
+#. Author of the plugin/theme
+#, fuzzy
+msgid "Takashi Kitajima"
+msgstr "Takashi Kitajima"
+
+#. Author URI of the plugin/theme
+#, fuzzy
+msgid "http://2inc.org"
+msgstr "http://2inc.org"

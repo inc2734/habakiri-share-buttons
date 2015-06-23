@@ -58,7 +58,7 @@
 }
 .habakiri-share-buttons-balloon ul li {
 	display: inline-block;
-	font-family: Arial, serif;
+	font-family: Arial, sans-serif;
 	margin: 0 3px 0 0;
 	padding: 0;
 	width: 80px;
@@ -125,9 +125,6 @@
 	font-size: 13px;
 }
 .habakiri-share-buttons-balloon .habakiri-share-buttons-twitter .habakiri-share-buttons-button {
-	text-indent: -6px;
-}
-.habakiri-share-buttons-balloon .habakiri-share-buttons-facebook .habakiri-share-buttons-button {
 	text-indent: -2px;
 }
 

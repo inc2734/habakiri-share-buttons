@@ -15,19 +15,13 @@ class Habakiri_Share_Buttons_Option {
 	 * シェアボタンの種類
 	 * @var array
 	 */
-	protected static $type = array(
-		'balloon'    => 'Balloon',
-		'horizontal' => 'Horizontal',
-	);
+	protected static $type = array();
 
 	/**
 	 * 表示位置
 	 * @var array
 	 */
-	protected static $position = array(
-		'habakiri_before_entry_content' => 'Before Content',
-		'habakiri_after_entry_content'  => 'After Content',
-	);
+	protected static $position = array();
 
 	/**
 	 * 表示する投稿タイプ
@@ -52,6 +46,20 @@ class Habakiri_Share_Buttons_Option {
 			}
 			unset( $validated_post_types['attachment'] );
 			self::$$key = $validated_post_types;
+		}
+		elseif ( $key === 'type') {
+			$type = array(
+				'balloon'    => __( 'Balloon', 'habakiri-share-buttons' ),
+				'horizontal' => __( 'Horizontal', 'habakiri-share-buttons' ),
+			);
+			self::$$key = $type;
+		}
+		elseif ( $key === 'position') {
+			$position = array(
+				'habakiri_before_entry_content' => __( 'Before Content', 'habakiri-share-buttons' ),
+				'habakiri_after_entry_content'  => __( 'After Content', 'habakiri-share-buttons' ),
+			);
+			self::$$key = $position;
 		}
 
 		if ( !empty( self::$$key ) ) {

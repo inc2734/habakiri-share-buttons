@@ -17,11 +17,6 @@ class Habakiri_Share_Buttons_Settings {
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_setting' ) );
-
-		$this->type = array(
-			'balloon'    => __( 'Balloon', 'habakiri-share-buttons' ),
-			'horizontal' => __( 'Horizontal', 'habakiri-share-buttons' ),
-		);
 	}
 
 	/**
@@ -139,7 +134,7 @@ class Habakiri_Share_Buttons_Settings {
 							?>
 							<ul>
 								<?php foreach ( $choices as $key => $value ) : ?>
-								<li><label><input type="radio" name="<?php echo esc_attr( Habakiri_Share_Buttons_Config::NAME ); ?>[type]" value="<?php echo esc_attr( $key ); ?>" <?php checked( $type, $key ); ?> /> <?php esc_html_e( $value, 'habakiri-share-buttons' ); ?></label></li>
+								<li><label><input type="radio" name="<?php echo esc_attr( Habakiri_Share_Buttons_Config::NAME ); ?>[type]" value="<?php echo esc_attr( $key ); ?>" <?php checked( $type, $key ); ?> /> <?php echo esc_html( $value ); ?></label></li>
 								<?php endforeach; ?>
 							</ul>
 						</td>
@@ -156,7 +151,7 @@ class Habakiri_Share_Buttons_Settings {
 							?>
 							<ul>
 								<?php foreach ( $choices as $key => $value ) : ?>
-								<li><label><input type="checkbox" name="<?php echo esc_attr( Habakiri_Share_Buttons_Config::NAME ); ?>[position][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( $key, $position ) ); ?> /> <?php esc_html_e( $value, 'habakiri-share-buttons' ); ?></label></li>
+								<li><label><input type="checkbox" name="<?php echo esc_attr( Habakiri_Share_Buttons_Config::NAME ); ?>[position][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( $key, $position ) ); ?> /> <?php echo esc_html( $value ); ?></label></li>
 								<?php endforeach; ?>
 							</ul>
 						</td>
@@ -173,7 +168,7 @@ class Habakiri_Share_Buttons_Settings {
 							?>
 							<ul>
 								<?php foreach ( $choices as $key => $value ) : ?>
-								<li><label><input type="checkbox" name="<?php echo esc_attr( Habakiri_Share_Buttons_Config::NAME ); ?>[post_type][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( $key, $post_type ) ); ?> /> <?php esc_html_e( $value, 'habakiri-share-buttons' ); ?></label></li>
+								<li><label><input type="checkbox" name="<?php echo esc_attr( Habakiri_Share_Buttons_Config::NAME ); ?>[post_type][]" value="<?php echo esc_attr( $key ); ?>" <?php checked( in_array( $key, $post_type ) ); ?> /> <?php echo esc_html( $value ); ?></label></li>
 								<?php endforeach; ?>
 							</ul>
 						</td>
