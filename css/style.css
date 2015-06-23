@@ -7,206 +7,203 @@
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
-
-/**
- * アイコン
- */
 @font-face {
-	font-family: 'habakiri-share-buttons';
-	src:url( '../fonts/habakiri-share-buttons.eot' );
-	src:url( '../fonts/habakiri-share-buttons.eot' )  format( 'embedded-opentype' ),
-		url( '../fonts/habakiri-share-buttons.ttf' )  format( 'truetype' ),
-		url( '../fonts/habakiri-share-buttons.woff' ) format( 'woff' ),
-		url( '../fonts/habakiri-share-buttons.svg' )  format( 'svg' );
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'habakiri-share-buttons';
+  src: url("../fonts/habakiri-share-buttons.eot");
+  src: url("../fonts/habakiri-share-buttons.eot") format("embedded-opentype"), url("../fonts/habakiri-share-buttons.ttf") format("truetype"), url("../fonts/habakiri-share-buttons.woff") format("woff"), url("../fonts/habakiri-share-buttons.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
 }
+
+.habakiri-share-buttons {
+  /**
+	 * icons
+	 */
+  /**
+	 * balloon
+	 */
+  /**
+	 * horizontal
+	 */
+}
+
 .habakiri-share-buttons-icon {
-	font-family: 'habakiri-share-buttons' !important;
+  font-family: 'habakiri-share-buttons' !important;
 }
+
 .habakiri-share-buttons-icon-feedly:before {
-	content: "\e600";
+  content: "\e600";
 }
+
 .habakiri-share-buttons-icon-hatena:before {
-	content: "\e601";
-	color: #008be2;
+  content: "\e601";
+  color: #008be2;
 }
+
 .habakiri-share-buttons-icon-line:before {
-	content: "\e602";
-}
-.genericon-twitter:before {
-	color: #00acf2;
-}
-.genericon-facebook:before {
-	color: #4555ab;
+  content: "\e602";
 }
 
-/* ==================================================
- * balloon
- * =============================================== */
+.habakiri-share-buttons .genericon-twitter:before {
+  color: #00acf2;
+}
 
-/**
- * 項目枠
- */
+.habakiri-share-buttons .genericon-facebook:before {
+  color: #4555ab;
+}
+
 .habakiri-share-buttons-balloon {
-	margin: 20px 0;
+  margin: 20px 0;
 }
+
 .habakiri-share-buttons-balloon ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
 .habakiri-share-buttons-balloon ul li {
-	display: inline-block;
-	font-family: Arial, sans-serif;
-	margin: 0 3px 0 0;
-	padding: 0;
-	width: 80px;
+  display: inline-block;
+  font-family: Arial, sans-serif;
+  margin: 0 3px 0 0;
+  padding: 0;
+  width: 80px;
 }
 
-/**
- * カウント表示
- */
-.habakiri-share-buttons-balloon ul li .habakiri-share-buttons-count {
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	font-size: 16px;
-	margin: 0 0 6px;
-	padding: 4px 10px;
-	text-align: center;
-	position: relative;
-}
-.habakiri-share-buttons-balloon ul li .habakiri-share-buttons-count:before {
-	content: "";
-	position: absolute;
-	bottom: -5px;
-	left: 50%;
-	margin-left: -5px;
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 5px 5px 0 5px;
-	border-color: #ddd transparent transparent transparent;
-}
-.habakiri-share-buttons-balloon ul li .habakiri-share-buttons-count:after {
-	content: "";
-	position: absolute;
-	bottom: -4px;
-	left: 50%;
-	margin-left: -5px;
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 5px 5px 0 5px;
-	border-color: #fff transparent transparent transparent;
+.habakiri-share-buttons-balloon .habakiri-share-buttons-count {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 16px;
+  margin: 0 0 6px;
+  padding: 4px 10px;
+  text-align: center;
+  position: relative;
 }
 
-/**
- * ボタン
- */
-.habakiri-share-buttons-balloon ul li .habakiri-share-buttons-button {
-	background-color: #f5f5f5;
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	color: #333;
-	font-size: 11px;
-	display: block;
-	padding: 3px 6px;
-	overflow: hidden;
-	white-space: nowrap;
-	line-height: 1.2;
-	text-align: center;
-	text-decoration: none;
+.habakiri-share-buttons-balloon .habakiri-share-buttons-count:before {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #ddd transparent transparent transparent;
 }
-.habakiri-share-buttons-balloon ul li .habakiri-share-buttons-button:hover {
-	background-color: #fff;
+
+.habakiri-share-buttons-balloon .habakiri-share-buttons-count:after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #fff transparent transparent transparent;
 }
-.habakiri-share-buttons-balloon ul li .habakiri-share-buttons-button .genericon {
-	font-size: 13px;
+
+.habakiri-share-buttons-balloon .habakiri-share-buttons-button {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #333;
+  font-size: 11px;
+  display: block;
+  padding: 3px 6px;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
 }
+
+.habakiri-share-buttons-balloon .habakiri-share-buttons-button:hover {
+  background-color: #fff;
+}
+
+.habakiri-share-buttons-balloon .habakiri-share-buttons-button .genericon {
+  font-size: 13px;
+}
+
 .habakiri-share-buttons-balloon .habakiri-share-buttons-twitter .habakiri-share-buttons-button {
-	text-indent: -2px;
+  text-indent: -2px;
 }
 
-/* ==================================================
- * horizontal
- * =============================================== */
-
-/**
- * 項目枠
- */
 .habakiri-share-buttons-horizontal {
-	line-height: 1.2;
-	margin: 20px 0;
+  line-height: 1.2;
+  margin: 20px 0;
 }
+
 .habakiri-share-buttons-horizontal ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
 .habakiri-share-buttons-horizontal ul li {
-	display: inline-block;
-	font-family: Arial, serif;
-	margin: 0 3px 0 0;
-	padding: 0;
-	overflow: hidden;
+  display: inline-block;
+  font-family: Arial, serif;
+  margin: 0 3px 0 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-/**
- * カウント表示
- */
-.habakiri-share-buttons-horizontal ul li .habakiri-share-buttons-count {
-	float: right;
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	font-size: 11px;
-	padding: 2px 5px;
-	text-align: center;
-	position: relative;
-}
-.habakiri-share-buttons-horizontal ul li .habakiri-share-buttons-count:before {
-	content: "";
-	position: absolute;
-	left: -5px;
-	top: 50%;
-	margin-top: -5px;
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 5px 5px 5px 0;
-	border-color: transparent #ddd transparent transparent;
-}
-.habakiri-share-buttons-horizontal ul li .habakiri-share-buttons-count:after {
-	content: "";
-	position: absolute;
-	left: -4px;
-	top: 50%;
-	margin-top: -5px;
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 5px 5px 5px 0;
-	border-color: transparent #fff transparent transparent;
+.habakiri-share-buttons-horizontal .habakiri-share-buttons-count {
+  float: right;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  font-size: 11px;
+  padding: 2px 5px;
+  text-align: center;
+  position: relative;
 }
 
-/**
- * ボタン
- */
-.habakiri-share-buttons-horizontal ul li .habakiri-share-buttons-button {
-	float: left;
-	margin: 0 5px 0 0;
-	background-color: #f5f5f5;
-	border: 1px solid #ddd;
-	border-radius: 3px;
-	color: #333;
-	font-size: 11px;
-	display: block;
-	padding: 2px 5px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-align: center;
-	text-decoration: none;
+.habakiri-share-buttons-horizontal .habakiri-share-buttons-count:before {
+  content: "";
+  position: absolute;
+  left: -5px;
+  top: 50%;
+  margin-top: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 5px 0;
+  border-color: transparent #ddd transparent transparent;
 }
-.habakiri-share-buttons-horizontal ul li .habakiri-share-buttons-button .genericon {
-	font-size: 13px;
+
+.habakiri-share-buttons-horizontal .habakiri-share-buttons-count:after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  margin-top: -5px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 5px 0;
+  border-color: transparent #fff transparent transparent;
+}
+
+.habakiri-share-buttons-horizontal .habakiri-share-buttons-button {
+  float: left;
+  margin: 0 5px 0 0;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  color: #333;
+  font-size: 11px;
+  display: block;
+  padding: 2px 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+  text-decoration: none;
+}
+
+.habakiri-share-buttons-horizontal .habakiri-share-buttons-button .genericon {
+  font-size: 13px;
 }
