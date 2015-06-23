@@ -16,14 +16,6 @@
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.config.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.option.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.habakiri-share-buttons-settings.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'plugin-update-checker/plugin-update-checker.php' );
-
-$className = PucFactory::getLatestClassVersion( 'PucGitHubChecker' );
-$UpdateChecker = new $className(
-	'https://github.com/inc2734/habakiri-share-buttons/',
-	__FILE__,
-	'master'
-);
 
 class Habakiri_Share_Buttons {
 
