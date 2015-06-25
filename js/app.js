@@ -18,7 +18,6 @@ jQuery( function( $ ) {
 		}, params );
 
 		params.title = encodeURIComponent( params.title );
-		params.url   = encodeURIComponent( params.url );
 
 		var facebook = container.find( '.habakiri-share-buttons-facebook' );
 		var twitter  = container.find( '.habakiri-share-buttons-twitter' );
