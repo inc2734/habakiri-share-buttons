@@ -16,6 +16,8 @@
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.config.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.option.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.habakiri-share-buttons-settings.php' );
+include_once( plugin_dir_path( __FILE__ ) . 'classes/class.github-updater.php' );
+new habakiri_Plugin_GitHub_Updater( 'habakiri-share-buttons', __FILE__, 'inc2734' );
 
 class Habakiri_Share_Buttons {
 
@@ -46,6 +48,20 @@ class Habakiri_Share_Buttons {
 		);
 	}
 
+	public function init() {
+		new Habakiri_Share_Buttons_Settings();
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+
+		$position = Habakiri_Share_Buttons_Option::get( 'position' );
+		if ( is_array( $position ) ) {
+			foreach ( $position as $value ) {
+				add_action( $value, array( $this, 'display_share_buttons' ) );
+			}
+		}
+		
+		add_shortcode( 'habakiri_share_buttons', array( $this, 'shortcode' ) );
+	}
+
 	/**
 	 * CSS、JS の読み込み
 	 */
@@ -63,20 +79,6 @@ class Habakiri_Share_Buttons {
 			null,
 			false
 		);
-	}
-
-	public function init() {
-		new Habakiri_Share_Buttons_Settings();
-		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
-
-		$position = Habakiri_Share_Buttons_Option::get( 'position' );
-		if ( is_array( $position ) ) {
-			foreach ( $position as $value ) {
-				add_action( $value, array( $this, 'display_share_buttons' ) );
-			}
-		}
-		
-		add_shortcode( 'habakiri_share_buttons', array( $this, 'shortcode' ) );
 	}
 
 	/**
