@@ -1,10 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
- * Version    : 1.0.0
+ * Version    : 1.1.0
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   :
+ * Modified   : June 26, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -22,6 +22,8 @@ jQuery( function( $ ) {
 		var facebook = container.find( '.habakiri-share-buttons-facebook' );
 		var twitter  = container.find( '.habakiri-share-buttons-twitter' );
 		var hatena   = container.find( '.habakiri-share-buttons-hatena' );
+		var pocket   = container.find( '.habakiri-share-buttons-pocket' );
+		var feedly   = container.find( '.habakiri-share-buttons-feedly' );
 
 		return container.each( function() {
 			facebook_count();
@@ -30,6 +32,9 @@ jQuery( function( $ ) {
 			twitter_button();
 			hatena_count();
 			hatena_button();
+			pocket_count();
+			pocket_button();
+			feedly_count();
 		} );
 
 		function twitter_count() {
@@ -98,6 +103,47 @@ jQuery( function( $ ) {
 					'Hatena Bookmark',
 					'width=510, height=420, menubar=no, toolbar=no, scrollbars=yes'
 				);
+			} );
+		}
+
+		function pocket_count() {
+			$.ajax( {
+				url     : habakiri_share_buttons_pocket.endpoint,
+				dataType: 'json',
+				data    : {
+					action     : habakiri_share_buttons_pocket.action,
+					_ajax_nonce: habakiri_share_buttons_pocket._ajax_nonce
+				},
+				success : function( json ) {
+					var count = json ? json : 0;
+					pocket.find( '.habakiri-share-buttons-count' ).text( count );
+				}
+			} );
+		}
+
+		function pocket_button() {
+			pocket.find( '.habakiri-share-buttons-button' ).click( function( e ) {
+				e.preventDefault();
+				window.open(
+					$( this ).attr( 'href' ),
+					'Pocket',
+					'width=550, height=350, menubar=no, toolbar=no, scrollbars=yes'
+				);
+			} );
+		}
+
+		function feedly_count() {
+			$.ajax( {
+				url     : habakiri_share_buttons_feedly.endpoint,
+				dataType: 'json',
+				data    : {
+					action     : habakiri_share_buttons_feedly.action,
+					_ajax_nonce: habakiri_share_buttons_feedly._ajax_nonce
+				},
+				success : function( json ) {
+					var count = json.subscribers ? json.subscribers : 0;
+					feedly.find( '.habakiri-share-buttons-count' ).text( count );
+				}
 			} );
 		}
 	};

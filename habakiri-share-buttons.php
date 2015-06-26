@@ -3,11 +3,11 @@
  * Plugin Name: Habakiri Share Buttons
  * Plugin URI: https://github.com/inc2734/habakiri-share-buttons
  * Description: Add social share buttons on Habakiri theme.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Takashi Kitajima
  * Author URI: http://2inc.org
  * Created : June 15, 2015
- * Modified: 
+ * Modified: June 26, 2015
  * Text Domain: habakiri-share-buttons
  * Domain Path: /languages/
  * License: GPLv2 or later
@@ -52,6 +52,14 @@ class Habakiri_Share_Buttons {
 		new Habakiri_Share_Buttons_Settings();
 		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 
+		$feedly_action = Habakiri_Share_Buttons_Config::KEY . '_feedly';
+		add_action( 'wp_ajax_' . $feedly_action       , array( $this, 'get_feedly' ) );
+		add_action( 'wp_ajax_nopriv_' . $feedly_action, array( $this, 'get_feedly' ) );
+
+		$pocket_action = Habakiri_Share_Buttons_Config::KEY . '_pocket';
+		add_action( 'wp_ajax_' . $pocket_action      , array( $this, 'get_pocket' ) );
+		add_action('wp_ajax_nopriv_' . $pocket_action, array( $this, 'get_pocket' ) );
+
 		$position = Habakiri_Share_Buttons_Option::get( 'position' );
 		if ( is_array( $position ) ) {
 			foreach ( $position as $value ) {
@@ -59,7 +67,7 @@ class Habakiri_Share_Buttons {
 			}
 		}
 		
-		add_shortcode( 'habakiri_share_buttons', array( $this, 'shortcode' ) );
+		add_shortcode( Habakiri_Share_Buttons_Config::KEY, array( $this, 'shortcode' ) );
 	}
 
 	/**
@@ -79,6 +87,56 @@ class Habakiri_Share_Buttons {
 			null,
 			false
 		);
+
+		$feedly_action = Habakiri_Share_Buttons_Config::KEY . '_feedly';
+		wp_localize_script(
+			Habakiri_Share_Buttons_Config::NAME,
+			$feedly_action,
+			array(
+				'endpoint'    => admin_url( 'admin-ajax.php' ),
+				'action'      => $feedly_action,
+				'_ajax_nonce' => wp_create_nonce( $feedly_action )
+			)
+		);
+		
+		$pocket_action = Habakiri_Share_Buttons_Config::KEY . '_pocket';
+		wp_localize_script(
+			Habakiri_Share_Buttons_Config::NAME,
+			$pocket_action,
+			array(
+				'endpoint'    => admin_url( 'admin-ajax.php' ),
+				'action'      => $pocket_action,
+				'_ajax_nonce' => wp_create_nonce( $pocket_action )
+			)
+		);
+	}
+
+	/**
+	 * Feedly の講読者数を json として出力
+	 */
+	public function get_feedly() {
+		$feedly_action = Habakiri_Share_Buttons_Config::KEY . '_feedly';
+		check_ajax_referer( $feedly_action );
+		$feed_url = rawurlencode( get_bloginfo( 'rss2_url' ) );
+		$response = wp_remote_get( "http://cloud.feedly.com/v3/feeds/feed%2F$feed_url" );
+		$body = wp_remote_retrieve_body( $response );
+		wp_send_json( json_decode( $body ) );
+	}
+
+	/**
+	 * Pocket のブックマーク数を json として出力
+	 */
+	public function get_pocket() {
+		$url = rawurlencode( get_permalink() );
+		$response = wp_remote_get( "https://widgets.getpocket.com/v1/button?count=vertical&url=$url" );
+		$body = wp_remote_retrieve_body( $response );
+		preg_match( '/<em id="cnt">(\d*?)<\/em>/', $body, $reg );
+
+		$count = 0;
+		if ( !empty( $reg[1] ) ) {
+			$count = $reg[1];
+		}
+		wp_send_json( $count );
 	}
 
 	/**
@@ -105,21 +163,35 @@ class Habakiri_Share_Buttons {
 						<div class="habakiri-share-buttons-count">0</div>
 						<a class="habakiri-share-buttons-button" href="https://www.facebook.com/sharer/sharer.php?u=%4$s" target="_blank">
 							<span class="genericon genericon-facebook"></span>
-							%5$s
+							%6$s
 						</a>
 					</li>
 					<li class="habakiri-share-buttons-twitter">
 						<div class="habakiri-share-buttons-count">0</div>
 						<a class="habakiri-share-buttons-button" href="https://twitter.com/share?&amp;text=%3$s&amp;url=%4$s" target="_blank">
 							<span class="genericon genericon-twitter"></span>
-							%6$s
+							%7$s
 						</a>
 					</li>
 					<li class="habakiri-share-buttons-hatena">
 						<div class="habakiri-share-buttons-count">0</div>
 						<a class="habakiri-share-buttons-button" href="http://b.hatena.ne.jp/add?mode=confirm&amp;url=%4$s&amp;title=%3$s" target="_blank">
 							<span class="genericon habakiri-share-buttons-icon habakiri-share-buttons-icon-hatena"></span>
-							%7$s
+							%8$s
+						</a>
+					</li>
+					<li class="habakiri-share-buttons-pocket">
+						<div class="habakiri-share-buttons-count">0</div>
+						<a class="habakiri-share-buttons-button" href="http://getpocket.com/edit?url=%4$s&title=%3$s" target="_blank">
+							<span class="genericon genericon-pocket"></span>
+							%9$s
+						</a>
+					</li>
+					<li class="habakiri-share-buttons-feedly">
+						<div class="habakiri-share-buttons-count">0</div>
+						<a class="habakiri-share-buttons-button" href="http://feedly.com/index.html#subscription/feed/%5$s" target="_blank">
+							<span class="genericon habakiri-share-buttons-icon habakiri-share-buttons-icon-feedly"></span>
+							%10$s
 						</a>
 					</li>
 				</ul>
@@ -128,9 +200,12 @@ class Habakiri_Share_Buttons {
 			esc_attr( $type ),
 			esc_attr( $title ),
 			esc_attr( $permalink ),
+			get_bloginfo( 'rss2_url' ),
 			esc_html__( 'Like!', 'habakiri-share-buttons' ),
 			esc_html__( 'Tweet', 'habakiri-share-buttons' ),
-			esc_html__( 'Bookmark', 'habakiri-share-buttons' )
+			esc_html__( 'Bookmark', 'habakiri-share-buttons' ),
+			esc_html__( 'Pocket', 'habakiri-share-buttons' ),
+			esc_html__( 'Feedly', 'habakiri-share-buttons' )
 		);
 	}
 
@@ -146,7 +221,8 @@ class Habakiri_Share_Buttons {
 		$type = Habakiri_Share_Buttons_Option::get( 'type' );
 
 		echo do_shortcode( sprintf(
-			'[habakiri_share_buttons type="%s"]',
+			'[%s type="%s"]',
+			Habakiri_Share_Buttons_Config::KEY,
 			$type
 		) );
 	}

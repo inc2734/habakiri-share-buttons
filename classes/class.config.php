@@ -11,9 +11,9 @@
 class Habakiri_Share_Buttons_Config {
 
 	/**
-	 * PREFIX
+	 * KEY
 	 */
-	const PREFIX = 'habakiri_share_buttons';
+	const KEY = 'habakiri_share_buttons';
 
 	/**
 	 * NAME

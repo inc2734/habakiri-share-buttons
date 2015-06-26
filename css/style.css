@@ -1,9 +1,9 @@
 /**
- * Version    : 1.0.0
+ * Version    : 1.1.0
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   :
+ * Modified   : June 26, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -33,6 +33,7 @@
 
 .habakiri-share-buttons-icon-feedly:before {
   content: "\e600";
+  color: #6cc655;
 }
 
 .habakiri-share-buttons-icon-hatena:before {
@@ -50,6 +51,10 @@
 
 .habakiri-share-buttons .genericon-facebook:before {
   color: #4555ab;
+}
+
+.habakiri-share-buttons .genericon-pocket:before {
+  color: #ff002d;
 }
 
 .habakiri-share-buttons-balloon {
@@ -130,6 +135,10 @@
 }
 
 .habakiri-share-buttons-balloon .habakiri-share-buttons-twitter .habakiri-share-buttons-button {
+  text-indent: -2px;
+}
+
+.habakiri-share-buttons-balloon .habakiri-share-buttons-pocket .habakiri-share-buttons-button {
   text-indent: -2px;
 }
 
