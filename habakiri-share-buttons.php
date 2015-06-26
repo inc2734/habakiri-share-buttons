@@ -3,7 +3,7 @@
  * Plugin Name: Habakiri Share Buttons
  * Plugin URI: https://github.com/inc2734/habakiri-share-buttons
  * Description: Add social share buttons on Habakiri theme.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Takashi Kitajima
  * Author URI: http://2inc.org
  * Created : June 15, 2015
@@ -106,7 +106,7 @@ class Habakiri_Share_Buttons {
 			array(
 				'endpoint'    => admin_url( 'admin-ajax.php' ),
 				'action'      => $pocket_action,
-				'_ajax_nonce' => wp_create_nonce( $pocket_action )
+				'_ajax_nonce' => wp_create_nonce( $pocket_action ),
 			)
 		);
 	}
@@ -117,6 +117,7 @@ class Habakiri_Share_Buttons {
 	public function get_feedly() {
 		$feedly_action = Habakiri_Share_Buttons_Config::KEY . '_feedly';
 		check_ajax_referer( $feedly_action );
+
 		$feed_url = rawurlencode( get_bloginfo( 'rss2_url' ) );
 		$response = wp_remote_get( "http://cloud.feedly.com/v3/feeds/feed%2F$feed_url" );
 		$body = wp_remote_retrieve_body( $response );
@@ -127,7 +128,15 @@ class Habakiri_Share_Buttons {
 	 * Pocket のブックマーク数を json として出力
 	 */
 	public function get_pocket() {
-		$url = rawurlencode( get_permalink() );
+		$pocket_action = Habakiri_Share_Buttons_Config::KEY . '_pocket';
+		check_ajax_referer( $pocket_action );
+
+		if ( empty( $_GET['post_id'] ) ) {
+			return 0;
+		}
+
+		$post_id = $_GET['post_id'];
+		$url = rawurlencode( get_permalink( $post_id ) );
 		$response = wp_remote_get( "https://widgets.getpocket.com/v1/button?count=vertical&url=$url" );
 		$body = wp_remote_retrieve_body( $response );
 		preg_match( '/<em id="cnt">(\d*?)<\/em>/', $body, $reg );
@@ -157,7 +166,7 @@ class Habakiri_Share_Buttons {
 		$permalink = urlencode( esc_attr( $attributes['permalink'] ) );
 
 		return sprintf(
-			'<div id="habakiri-share-buttons-%1$d" class="habakiri-share-buttons habakiri-share-buttons-%2$s" data-habakiri-share-buttons-title="%3$s" data-habakiri-share-buttons-url="%4$s">
+			'<div id="habakiri-share-buttons-%1$d" class="habakiri-share-buttons habakiri-share-buttons-%2$s" data-habakiri-share-buttons-title="%3$s" data-habakiri-share-buttons-url="%4$s" data-habakiri-share-buttons-postid="%1$s">
 				<ul>
 					<li class="habakiri-share-buttons-facebook">
 						<div class="habakiri-share-buttons-count">0</div>

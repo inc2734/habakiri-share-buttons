@@ -1,6 +1,6 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
- * Version    : 1.1.0
+ * Version    : 1.1.1
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
@@ -13,8 +13,9 @@ jQuery( function( $ ) {
 	$.fn.habakiri_share_buttons = function( params ) {
 		var container = this;
 		var params = $.extend( {
-			title: container.data( 'habakiri-share-buttons-title' ),
-			url  : container.data( 'habakiri-share-buttons-url' )
+			title  : container.data( 'habakiri-share-buttons-title' ),
+			url    : container.data( 'habakiri-share-buttons-url' ),
+			post_id: container.data( 'habakiri-share-buttons-postid' )
 		}, params );
 
 		params.title = encodeURIComponent( params.title );
@@ -112,7 +113,8 @@ jQuery( function( $ ) {
 				dataType: 'json',
 				data    : {
 					action     : habakiri_share_buttons_pocket.action,
-					_ajax_nonce: habakiri_share_buttons_pocket._ajax_nonce
+					_ajax_nonce: habakiri_share_buttons_pocket._ajax_nonce,
+					post_id    : params.post_id
 				},
 				success : function( json ) {
 					var count = json ? json : 0;

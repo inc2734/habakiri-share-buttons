@@ -1,5 +1,5 @@
 /**
- * Version    : 1.1.0
+ * Version    : 1.1.1
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
@@ -12,8 +12,9 @@ jQuery( function( $ ) {
 	$.fn.habakiri_share_buttons = function( params ) {
 		var container = this;
 		var params = $.extend( {
-			title: container.data( 'habakiri-share-buttons-title' ),
-			url  : container.data( 'habakiri-share-buttons-url' )
+			title  : container.data( 'habakiri-share-buttons-title' ),
+			url    : container.data( 'habakiri-share-buttons-url' ),
+			post_id: container.data( 'habakiri-share-buttons-postid' )
 		}, params );
 
 		params.title = encodeURIComponent( params.title );
@@ -111,7 +112,8 @@ jQuery( function( $ ) {
 				dataType: 'json',
 				data    : {
 					action     : habakiri_share_buttons_pocket.action,
-					_ajax_nonce: habakiri_share_buttons_pocket._ajax_nonce
+					_ajax_nonce: habakiri_share_buttons_pocket._ajax_nonce,
+					post_id    : params.post_id
 				},
 				success : function( json ) {
 					var count = json ? json : 0;
