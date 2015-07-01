@@ -149,10 +149,15 @@ class habakiri_Plugin_GitHub_Updater {
 	 */
 	public function upgrader_post_install( $response, $hook_extra, $result ) {
 		$slug = $this->get_relative_plugin_path();
+		
+		if ( !isset( $hook_extra['plugin'] ) || $hook_extra['plugin'] !== $slug ) {
+			return $result;
+		}
+		
 		$is_activated = is_plugin_active( $slug );
 
 		global $wp_filesystem;
-		$plugin_dir_path = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR .$this->slug;
+		$plugin_dir_path = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $this->slug;
 		$wp_filesystem->move( $result['destination'], $plugin_dir_path );
 		$result['destination'] = $plugin_dir_path;
 		if ( $is_activated ) {
@@ -172,14 +177,18 @@ class habakiri_Plugin_GitHub_Updater {
 		}
 
 		$url = "https://api.github.com/repos/{$this->user_name}/{$this->slug}/tags";
-		$response = wp_remote_get( $url );
+		$response = wp_remote_get( $url, array(
+			'headers' => array(
+				'Accept-Encoding' => '',
+			),
+		) );
 		if ( is_wp_error( $response ) ) {
 			return $response;
 		}
 		$code = wp_remote_retrieve_response_code( $response );
 		$body = wp_remote_retrieve_body( $response );
 		if ( $code === 200 ) {
-			$json_decoded_body   = json_decode( $body );
+			$json_decoded_body = json_decode( $body );
 			if ( !empty( $json_decoded_body[0] ) ) {
 				$json_decoded_body[0]->last_modified = $response['headers']['last-modified'];
 				$this->github = $json_decoded_body[0];
