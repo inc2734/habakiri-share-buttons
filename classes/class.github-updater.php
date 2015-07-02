@@ -55,10 +55,29 @@ class habakiri_Plugin_GitHub_Updater {
 		$this->plugin    = get_plugin_data( $path, false, false );
 		$this->user_name = $user_name;
 
-		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_site_transient_update_plugins' ) );
-		add_filter( 'plugins_api'                          , array( $this, 'plugins_api' ), 10, 3 );
-		add_filter( 'upgrader_post_install'                , array( $this, 'upgrader_post_install' ), 10, 3 );
-		add_filter( 'site_transient_update_plugins'        , array( $this, 'site_transient_update_plugins' ) );
+
+		add_filter(
+			'pre_set_site_transient_update_plugins',
+			array( $this, 'pre_set_site_transient_update_plugins' )
+		);
+		add_filter(
+			'plugins_api',
+			array( $this, 'plugins_api' ),
+			10,
+			3
+		);
+		add_filter(
+			'upgrader_post_install',
+			array( $this, 'upgrader_post_install' ),
+			10,
+			3
+		);
+		/*
+		add_filter(
+			'site_transient_update_plugins',
+			array( $this, 'site_transient_update_plugins' )
+		);
+		*/
 	}
 
 	/**
@@ -151,7 +170,7 @@ class habakiri_Plugin_GitHub_Updater {
 		$slug = $this->get_relative_plugin_path();
 		
 		if ( !isset( $hook_extra['plugin'] ) || $hook_extra['plugin'] !== $slug ) {
-			return $result;
+			return $response;
 		}
 		
 		$is_activated = is_plugin_active( $slug );
@@ -159,11 +178,10 @@ class habakiri_Plugin_GitHub_Updater {
 		global $wp_filesystem;
 		$plugin_dir_path = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $this->slug;
 		$wp_filesystem->move( $result['destination'], $plugin_dir_path );
-		$result['destination'] = $plugin_dir_path;
 		if ( $is_activated ) {
 			$activate = activate_plugin( $slug );
 		}
-		return $result;
+		return $response;
 	}
 
 	/**
@@ -213,29 +231,5 @@ class habakiri_Plugin_GitHub_Updater {
 			'%1$s/%1$s.php',
 			$this->slug
 		);
-	}
-
-	/**
-	 * @param object $updates
-	 * @return object $updates
-	 */
-	public function site_transient_update_plugins( $updates ) {
-		$slug = $this->get_relative_plugin_path();
-
-		if ( !is_array( $updates ) ) {
-			return $updates;
-		}
-
-		foreach ( $updates as $key => $update ) {
-			if ( $key === 'response' || $key === 'no_update' ) {
-				if ( !empty( $update[$slug] ) ) {
-					$update[$slug]->id     = 0;
-					$update[$slug]->plugin = $slug;
-					$update[$slug]->slug   = $this->slug;
-				}
-				$updates->$key = $update;
-			}
-		}
-		return $updates;
 	}
 }
