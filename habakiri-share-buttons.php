@@ -3,11 +3,11 @@
  * Plugin Name: Habakiri Share Buttons
  * Plugin URI: https://github.com/inc2734/habakiri-share-buttons
  * Description: Add social share buttons on Habakiri theme.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: Takashi Kitajima
  * Author URI: http://2inc.org
  * Created : June 15, 2015
- * Modified: June 27, 2015
+ * Modified: July 9, 2015
  * Text Domain: habakiri-share-buttons
  * Domain Path: /languages/
  * License: GPLv2 or later

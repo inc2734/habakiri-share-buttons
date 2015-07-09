@@ -1,9 +1,9 @@
 /**
- * Version    : 1.1.0
+ * Version    : 1.1.1
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   : June 26, 2015
+ * Modified   : July 9, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -73,6 +73,7 @@
 		}
 
 		.habakiri-share-buttons-count {
+			background-color: #fff;
 			border: 1px solid #ddd;
 			border-radius: 3px;
 			font-size: 16px;
@@ -160,6 +161,7 @@
 		}
 
 		.habakiri-share-buttons-count {
+			background-color: #fff;
 			float: right;
 			border: 1px solid #ddd;
 			border-radius: 3px;
