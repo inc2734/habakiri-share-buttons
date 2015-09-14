@@ -1,18 +1,18 @@
 <?php
-if ( class_exists( 'habakiri_Plugin_GitHub_Updater' ) || !is_admin() ) {
+if ( class_exists( 'Habakiri_Plugin_GitHub_Updater' ) || !is_admin() ) {
 	return;
 }
 
 /**
  * habakiri_Plugin_GitHub_Updater
- * Version    : 1.0.0
+ * Version    : 1.0.2
  * Author     : Takashi Kitajima
  * Created    : June 15, 2015
- * Modified   : 
+ * Modified   : September 14, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
-class habakiri_Plugin_GitHub_Updater {
+class Habakiri_Plugin_GitHub_Updater {
 
 	/**
 	 * プラグインのディレクトリ名
@@ -45,7 +45,7 @@ class habakiri_Plugin_GitHub_Updater {
 	 */
 	public function __construct( $slug, $path, $user_name ) {
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true ) {
-			delete_site_transient( 'update_plugin' );
+			delete_site_transient( 'update_plugins' );
 		}
 		
 		if ( !function_exists( 'get_plugin_data' ) ){
@@ -55,10 +55,24 @@ class habakiri_Plugin_GitHub_Updater {
 		$this->plugin    = get_plugin_data( $path, false, false );
 		$this->user_name = $user_name;
 
-		add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'pre_set_site_transient_update_plugins' ) );
-		add_filter( 'plugins_api'                          , array( $this, 'plugins_api' ), 10, 3 );
-		add_filter( 'upgrader_post_install'                , array( $this, 'upgrader_post_install' ), 10, 3 );
-		add_filter( 'site_transient_update_plugins'        , array( $this, 'site_transient_update_plugins' ) );
+		add_filter(
+			'pre_set_site_transient_update_plugins',
+			array( $this, 'pre_set_site_transient_update_plugins' )
+		);
+		
+		add_filter(
+			'plugins_api',
+			array( $this, 'plugins_api' ),
+			10,
+			3
+		);
+		
+		add_filter(
+			'upgrader_post_install',
+			array( $this, 'upgrader_post_install' ),
+			10,
+			3
+		);
 	}
 
 	/**
@@ -149,16 +163,20 @@ class habakiri_Plugin_GitHub_Updater {
 	 */
 	public function upgrader_post_install( $response, $hook_extra, $result ) {
 		$slug = $this->get_relative_plugin_path();
+		
+		if ( !isset( $hook_extra['plugin'] ) || $hook_extra['plugin'] !== $slug ) {
+			return $response;
+		}
+		
 		$is_activated = is_plugin_active( $slug );
 
 		global $wp_filesystem;
-		$plugin_dir_path = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR .$this->slug;
+		$plugin_dir_path = WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . $this->slug;
 		$wp_filesystem->move( $result['destination'], $plugin_dir_path );
-		$result['destination'] = $plugin_dir_path;
 		if ( $is_activated ) {
 			$activate = activate_plugin( $slug );
 		}
-		return $result;
+		return $response;
 	}
 
 	/**
@@ -172,14 +190,18 @@ class habakiri_Plugin_GitHub_Updater {
 		}
 
 		$url = "https://api.github.com/repos/{$this->user_name}/{$this->slug}/tags";
-		$response = wp_remote_get( $url );
+		$response = wp_remote_get( $url, array(
+			'headers' => array(
+				'Accept-Encoding' => '',
+			),
+		) );
 		if ( is_wp_error( $response ) ) {
 			return $response;
 		}
 		$code = wp_remote_retrieve_response_code( $response );
 		$body = wp_remote_retrieve_body( $response );
 		if ( $code === 200 ) {
-			$json_decoded_body   = json_decode( $body );
+			$json_decoded_body = json_decode( $body );
 			if ( !empty( $json_decoded_body[0] ) ) {
 				$json_decoded_body[0]->last_modified = $response['headers']['last-modified'];
 				$this->github = $json_decoded_body[0];
@@ -204,29 +226,5 @@ class habakiri_Plugin_GitHub_Updater {
 			'%1$s/%1$s.php',
 			$this->slug
 		);
-	}
-
-	/**
-	 * @param object $updates
-	 * @return object $updates
-	 */
-	public function site_transient_update_plugins( $updates ) {
-		$slug = $this->get_relative_plugin_path();
-
-		if ( !is_array( $updates ) ) {
-			return $updates;
-		}
-
-		foreach ( $updates as $key => $update ) {
-			if ( $key === 'response' || $key === 'no_update' ) {
-				if ( !empty( $update[$slug] ) ) {
-					$update[$slug]->id     = 0;
-					$update[$slug]->plugin = $slug;
-					$update[$slug]->slug   = $this->slug;
-				}
-				$updates->$key = $update;
-			}
-		}
-		return $updates;
 	}
 }
