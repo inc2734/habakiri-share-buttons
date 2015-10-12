@@ -39,7 +39,7 @@ jQuery( function( $ ) {
 		} );
 
 		function twitter_count() {
-			var api = 'http://urls.api.twitter.com/1/urls/count.json?url=' + params.url;
+			var api = '//urls.api.twitter.com/1/urls/count.json?url=' + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',
@@ -62,7 +62,7 @@ jQuery( function( $ ) {
 		}
 
 		function facebook_count() {
-			var api = 'http://graph.facebook.com/?id=' + params.url;
+			var api = '//graph.facebook.com/?id=' + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',
@@ -85,7 +85,7 @@ jQuery( function( $ ) {
 		}
 
 		function hatena_count() {
-			var api = 'http://api.b.st-hatena.com/entry.count?url=' + params.url;
+			var api = ( location.protocol === 'https:' ? 'https://b.hatena.ne.jp' : 'http://api.b.st-hatena.com' ) + '/entry.count?url='  + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',
