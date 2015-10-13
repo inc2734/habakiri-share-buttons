@@ -97,7 +97,7 @@ class Habakiri_Share_Buttons_Option {
 		}
 
 		// 保存されていないとき
-		if ( !array_key_exists( $key, $options ) ) {
+		if ( !is_array( $options ) || !array_key_exists( $key, $options ) ) {
 			return;
 		}
 
