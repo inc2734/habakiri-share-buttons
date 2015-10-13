@@ -53,6 +53,13 @@
 	.genericon-pocket:before {
 		color: #ff002d;
 	}
+	
+	/**
+	 * button
+	 */
+	.habakiri-share-buttons-button {
+		font-family: "Helvetica", sans-serif;
+	}
 
 	/**
 	 * balloon
@@ -215,6 +222,14 @@
 			.genericon {
 				font-size: 13px;
 			}
+		}
+
+		.habakiri-share-buttons-pocket .habakiri-share-buttons-button {
+			padding-right: 7px;
+		}
+
+		.habakiri-share-buttons-feedly .habakiri-share-buttons-button {
+			padding-right: 7px;
 		}
 	}
 }

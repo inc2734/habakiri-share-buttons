@@ -1,10 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
- * Version    : 1.1.1
+ * Version    : 1.2.0
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   : June 26, 2015
+ * Modified   : October 13, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -29,7 +29,6 @@ jQuery( function( $ ) {
 		return container.each( function() {
 			facebook_count();
 			facebook_button();
-			twitter_count();
 			twitter_button();
 			hatena_count();
 			hatena_button();
@@ -37,18 +36,6 @@ jQuery( function( $ ) {
 			pocket_button();
 			feedly_count();
 		} );
-
-		function twitter_count() {
-			var api = '//urls.api.twitter.com/1/urls/count.json?url=' + params.url;
-			$.ajax( {
-				url     : api,
-				dataType: 'jsonp',
-				success : function( json ) {
-					var count = json.count ? json.count : 0;
-					twitter.find( '.habakiri-share-buttons-count' ).text( count );
-				}
-			} );
-		}
 
 		function twitter_button() {
 			twitter.find( '.habakiri-share-buttons-button' ).click( function( e ) {
@@ -62,7 +49,7 @@ jQuery( function( $ ) {
 		}
 
 		function facebook_count() {
-			var api = '//graph.facebook.com/?id=' + params.url;
+			var api = 'http://graph.facebook.com/?id=' + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',
@@ -85,7 +72,7 @@ jQuery( function( $ ) {
 		}
 
 		function hatena_count() {
-			var api = ( location.protocol === 'https:' ? 'https://b.hatena.ne.jp' : 'http://api.b.st-hatena.com' ) + '/entry.count?url='  + params.url;
+			var api = 'http://api.b.st-hatena.com/entry.count?url=' + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',

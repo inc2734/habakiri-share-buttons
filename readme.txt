@@ -4,7 +4,7 @@ Donate link: http://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: plugin, share, button, share button, social
 Requires at least: 4.1
 Tested up to: 4.3.1
-Stable tag: 1.2.3
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ https://github.com/inc2734/habakiri-share-buttons/
 1. You can setting in Settings > Share Buttons Settings
 
 == Changelog ==
+
+= 1.3.0 =
+* Stop twitter count.
+* Changed button font.
 
 = 1.2.3 =
 * SSL support
