@@ -1,9 +1,9 @@
 /**
- * Version    : 1.2.0
+ * Version    : 1.2.1
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   : October 13, 2015
+ * Modified   : October 15, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -48,7 +48,7 @@ jQuery( function( $ ) {
 		}
 
 		function facebook_count() {
-			var api = 'http://graph.facebook.com/?id=' + params.url;
+			var api = '//graph.facebook.com/?id=' + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',
@@ -71,7 +71,7 @@ jQuery( function( $ ) {
 		}
 
 		function hatena_count() {
-			var api = 'http://api.b.st-hatena.com/entry.count?url=' + params.url;
+			var api = ( location.protocol === 'https:' ? 'https://b.hatena.ne.jp' : 'http://api.b.st-hatena.com' ) + '/entry.count?url='  + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',

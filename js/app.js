@@ -1,10 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 /**
- * Version    : 1.2.0
+ * Version    : 1.2.1
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   : October 13, 2015
+ * Modified   : October 15, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -49,7 +49,7 @@ jQuery( function( $ ) {
 		}
 
 		function facebook_count() {
-			var api = 'http://graph.facebook.com/?id=' + params.url;
+			var api = '//graph.facebook.com/?id=' + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',
@@ -72,7 +72,7 @@ jQuery( function( $ ) {
 		}
 
 		function hatena_count() {
-			var api = 'http://api.b.st-hatena.com/entry.count?url=' + params.url;
+			var api = ( location.protocol === 'https:' ? 'https://b.hatena.ne.jp' : 'http://api.b.st-hatena.com' ) + '/entry.count?url='  + params.url;
 			$.ajax( {
 				url     : api,
 				dataType: 'jsonp',
