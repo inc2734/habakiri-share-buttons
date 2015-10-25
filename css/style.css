@@ -1,9 +1,9 @@
 /**
- * Version    : 1.1.1
+ * Version    : 1.1.2
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   : July 9, 2015
+ * Modified   : October 25, 2015
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -175,7 +175,7 @@
   border: 1px solid #ddd;
   border-radius: 3px;
   font-size: 11px;
-  padding: 2px 5px;
+  padding: 4px 5px 2px;
   text-align: center;
   position: relative;
 }
