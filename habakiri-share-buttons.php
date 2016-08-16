@@ -3,11 +3,11 @@
  * Plugin Name: Habakiri Share Buttons
  * Plugin URI: https://github.com/inc2734/habakiri-share-buttons
  * Description: Add social share buttons on Habakiri theme.
- * Version: 1.4.0
+ * Version: 1.5.0
  * Author: Takashi Kitajima
  * Author URI: http://2inc.org
  * Created : June 15, 2015
- * Modified: October 25, 2015
+ * Modified: August 16, 2016
  * Text Domain: habakiri-share-buttons
  * Domain Path: /languages/
  * License: GPLv2 or later
@@ -16,7 +16,10 @@
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.config.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.option.php' );
 include_once( plugin_dir_path( __FILE__ ) . 'classes/class.habakiri-share-buttons-settings.php' );
-include_once( plugin_dir_path( __FILE__ ) . 'classes/class.github-updater.php' );
+
+if ( ! class_exists( 'Habakiri_Plugin_GitHub_Updater' ) ) {
+	include_once( plugin_dir_path( __FILE__ ) . 'classes/class.github-updater.php' );
+}
 new habakiri_Plugin_GitHub_Updater( 'habakiri-share-buttons', __FILE__, 'inc2734' );
 
 class Habakiri_Share_Buttons {
@@ -66,7 +69,7 @@ class Habakiri_Share_Buttons {
 				add_action( $value, array( $this, 'display_share_buttons' ) );
 			}
 		}
-		
+
 		add_shortcode( Habakiri_Share_Buttons_Config::KEY, array( $this, 'shortcode' ) );
 	}
 
@@ -98,7 +101,7 @@ class Habakiri_Share_Buttons {
 				'_ajax_nonce' => wp_create_nonce( $feedly_action )
 			)
 		);
-		
+
 		$pocket_action = Habakiri_Share_Buttons_Config::KEY . '_pocket';
 		wp_localize_script(
 			Habakiri_Share_Buttons_Config::NAME,
