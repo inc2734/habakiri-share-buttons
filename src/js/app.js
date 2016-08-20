@@ -43,7 +43,6 @@ jQuery( function( $ ) {
 				url     : api,
 				dataType: 'jsonp',
 				success : function( json ) {
-					console.log(json);
 					var count = json.count ? json.count : 0;
 					twitter.find( '.habakiri-share-buttons-count' ).text( count );
 				}
@@ -67,7 +66,6 @@ jQuery( function( $ ) {
 				url     : api,
 				dataType: 'jsonp',
 				success : function( json ) {
-					console.log(json);
 					var count = json.share.share_count ? json.share.share_count : 0;
 					facebook.find( '.habakiri-share-buttons-count' ).text( count );
 				}
