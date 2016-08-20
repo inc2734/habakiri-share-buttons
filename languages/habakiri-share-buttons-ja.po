@@ -1,17 +1,17 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Habakiri Share Buttons 1.0.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/habakiri-share-"
+"Project-Id-Version: Habakiri Share Buttons 1.6.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/habakiri-share-"
 "buttons\n"
-"POT-Creation-Date: 2015-06-23 07:11:01+00:00\n"
-"PO-Revision-Date: 2015-06-23 16:11+0900\n"
-"Last-Translator: Takashi Kitajima <inc@2inc.org>\n"
+"POT-Creation-Date: 2016-08-20 14:37+0900\n"
+"PO-Revision-Date: 2016-08-20 14:38+0900\n"
+"Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: Takashi Kitajima <inc@2inc.org>\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8.4\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-KeywordsList: __;_e;_x\n"
@@ -55,17 +55,25 @@ msgstr "本文の前"
 msgid "After Content"
 msgstr "本文の後"
 
-#: habakiri-share-buttons.php:136
-msgid "Like!"
-msgstr "いいね！"
+#: habakiri-share-buttons.php:216
+msgid "Share"
+msgstr "シェア"
 
-#: habakiri-share-buttons.php:137
+#: habakiri-share-buttons.php:217
 msgid "Tweet"
 msgstr "ツイート"
 
-#: habakiri-share-buttons.php:138
+#: habakiri-share-buttons.php:218
 msgid "Bookmark"
 msgstr "Bookmark"
+
+#: habakiri-share-buttons.php:219
+msgid "Pocket"
+msgstr "Pocket"
+
+#: habakiri-share-buttons.php:220
+msgid "Feedly"
+msgstr "Feedly"
 
 #. Plugin Name of the plugin/theme
 msgid "Habakiri Share Buttons"
@@ -85,6 +93,8 @@ msgid "Takashi Kitajima"
 msgstr "Takashi Kitajima"
 
 #. Author URI of the plugin/theme
-#, fuzzy
 msgid "http://2inc.org"
 msgstr "http://2inc.org"
+
+#~ msgid "Like!"
+#~ msgstr "いいね！"
