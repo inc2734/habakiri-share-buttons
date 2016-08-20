@@ -1,9 +1,9 @@
 /**
- * Version    : 1.2.1
+ * Version    : 1.3.0
  * Author     : Takashi Kitajima
  * Author URI : http://2inc.org
  * Create     : June 15, 2015
- * Modified   : October 15, 2015
+ * Modified   : August 20, 2016
  * License    : GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -28,6 +28,7 @@ jQuery( function( $ ) {
 		return container.each( function() {
 			facebook_count();
 			facebook_button();
+			twitter_count();
 			twitter_button();
 			hatena_count();
 			hatena_button();
@@ -35,6 +36,19 @@ jQuery( function( $ ) {
 			pocket_button();
 			feedly_count();
 		} );
+
+		function twitter_count() {
+			var api = 'https://opensharecount.com/count.json?url=' + params.url;
+			$.ajax( {
+				url     : api,
+				dataType: 'jsonp',
+				success : function( json ) {
+					console.log(json);
+					var count = json.count ? json.count : 0;
+					twitter.find( '.habakiri-share-buttons-count' ).text( count );
+				}
+			} );
+		}
 
 		function twitter_button() {
 			twitter.find( '.habakiri-share-buttons-button' ).click( function( e ) {
@@ -53,7 +67,8 @@ jQuery( function( $ ) {
 				url     : api,
 				dataType: 'jsonp',
 				success : function( json ) {
-					var count = json.shares ? json.shares : 0;
+					console.log(json);
+					var count = json.share.share_count ? json.share.share_count : 0;
 					facebook.find( '.habakiri-share-buttons-count' ).text( count );
 				}
 			} );

@@ -75,6 +75,8 @@ function jscompile( is_watch ) {
 /**************************************************
  * exec tasks
  *************************************************/
+gulp.task( 'build', ['sass', 'browserify'] );
+
 gulp.task( 'watch', ['sass', 'watchify'], function() {
 	gulp.watch( cssSrcPath + '/*.scss', ['sass'] );
 } );

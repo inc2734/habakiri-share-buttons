@@ -3,8 +3,8 @@ Contributors: inc2734, hnle
 Donate link: http://www.amazon.co.jp/registry/wishlist/39ANKRNSTNW40
 Tags: plugin, share, button, share button, social
 Requires at least: 4.1
-Tested up to: 4.5.3
-Stable tag: 1.5.0
+Tested up to: 4.6.0
+Stable tag: 1.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -33,6 +33,10 @@ https://github.com/inc2734/habakiri-share-buttons/
 1. You can setting in Settings > Share Buttons Settings
 
 == Changelog ==
+
+= 1.6.0 =
+* Facebook share count api update.
+* Tweet count api update. Using http://opensharecount.com/
 
 = 1.5.0 =
 * Fixed a bug Habakiri_Plugin_GitHub_Updater
