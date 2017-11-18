@@ -122,7 +122,7 @@ class Habakiri_Share_Buttons {
 		check_ajax_referer( $feedly_action );
 
 		$feed_url = rawurlencode( get_bloginfo( 'rss2_url' ) );
-		$response = wp_remote_get( "http://cloud.feedly.com/v3/feeds/feed%2F$feed_url" );
+		$response = wp_remote_get( "https://cloud.feedly.com/v3/feeds/feed%2F$feed_url" );
 		$body = wp_remote_retrieve_body( $response );
 		wp_send_json( json_decode( $body ) );
 	}
@@ -194,14 +194,14 @@ class Habakiri_Share_Buttons {
 					</li>
 					<li class="habakiri-share-buttons-pocket">
 						<div class="habakiri-share-buttons-count">0</div>
-						<a class="habakiri-share-buttons-button" href="http://getpocket.com/edit?url=%4$s&title=%3$s" target="_blank">
+						<a class="habakiri-share-buttons-button" href="https://getpocket.com/edit?url=%4$s&title=%3$s" target="_blank">
 							<span class="genericon genericon-pocket"></span>
 							%9$s
 						</a>
 					</li>
 					<li class="habakiri-share-buttons-feedly">
 						<div class="habakiri-share-buttons-count">0</div>
-						<a class="habakiri-share-buttons-button" href="http://feedly.com/index.html#subscription/feed/%5$s" target="_blank">
+						<a class="habakiri-share-buttons-button" href="https://feedly.com/index.html#subscription/feed/%5$s" target="_blank">
 							<span class="genericon habakiri-share-buttons-icon habakiri-share-buttons-icon-feedly"></span>
 							%10$s
 						</a>
